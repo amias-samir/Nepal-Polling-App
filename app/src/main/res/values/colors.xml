@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="transparent">#00e040fb</color>
+    <color name="divider">#BDBDBD</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="sent">#00cf11</color>
+    <color name="not_sent">#ed5047</color>
+
+    <color name="error_stroke_color">#b11919</color>
+    <color name="success_stroke_color">#109412</color>
+
+
+
+</resources>
