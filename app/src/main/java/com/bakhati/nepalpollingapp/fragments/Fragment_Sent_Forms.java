@@ -131,7 +131,7 @@ public class Fragment_Sent_Forms extends Fragment {
 
                             DataBaseNepalPoolingAppSent dataBaseNepalPoolingAppSent = new DataBaseNepalPoolingAppSent(getActivity());
                             dataBaseNepalPoolingAppSent.open();
-                            int id = (int) dataBaseNepalPoolingAppSent.updateTable_DeleteFlag(resultCur.get(position).dbId);
+                             dataBaseNepalPoolingAppSent.dropRowSentForms(resultCur.get(position).dbId);
 //                Toast.makeText(getActivity() ,resultCur.get(position).date+ " Long Clicked "+id , Toast.LENGTH_SHORT ).show();
                             dataBaseNepalPoolingAppSent.close();
                             showDialog.dismiss();
@@ -227,7 +227,7 @@ public class Fragment_Sent_Forms extends Fragment {
         dataBaseNepalPoolingAppSent.open();
         boolean isTableEmpty = dataBaseNepalPoolingAppSent.is_TABLE_MAIN_Empty();
         if(isTableEmpty){
-            Default_DIalog.showDefaultDialog(getActivity() , R.string.app_name , "No data Saved ");
+            Default_DIalog.showDefaultDialog(getActivity() , R.string.app_name , "No data Sent ");
         }else{
             int count = dataBaseNepalPoolingAppSent.returnTotalNoOf_TABLE_MAIN_NUM();
             Log.e("COUNT", "createList: "+ count );
@@ -245,7 +245,7 @@ public class Fragment_Sent_Forms extends Fragment {
                 savedData.deletedStatus = data[5];
                 savedData.dbId = data[6];
 
-                if(data[5].equals("0")) {
+                if(savedData.formId != null) {
 
                     resultCur.add(savedData);
                 }

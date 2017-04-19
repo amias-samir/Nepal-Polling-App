@@ -7,4 +7,9 @@
         android:title="View Saved Forms"
         android:orderInCategory="100"
         app:showAsAction="never" />
+
+    <item android:id="@+id/menu_item_dynamic_form"
+        android:title="Dynmic Form"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
 </menu>

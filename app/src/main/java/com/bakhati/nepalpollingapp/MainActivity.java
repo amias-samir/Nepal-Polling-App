@@ -12,6 +12,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
@@ -25,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bakhati.nepalpollingapp.activities.DynaficFormActivity;
 import com.bakhati.nepalpollingapp.activities.SavedFormsActivity;
 import com.bakhati.nepalpollingapp.database.DataBaseNepalPoolingAppSent;
 import com.bakhati.nepalpollingapp.database.DatabaseNepalPoolingAppNotSent;
@@ -51,6 +53,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private static final String TAG = "MainActivity" ;
+    Toolbar toolbar;
     Button save , send ;
     NetworkInfo networkInfo;
     ConnectivityManager connectivityManager;
@@ -78,6 +81,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Nepal Polling App");
+        setSupportActionBar(toolbar);
 
         spinner_age = (Spinner)findViewById(R.id.age_Spinner);
         spinner_sex = (Spinner)findViewById(R.id.sex_Spinner);
@@ -977,6 +984,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (id == R.id.menu_item_saved_forms) {
 
             Intent intent = new Intent(MainActivity.this, SavedFormsActivity.class);
+            this.startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.menu_item_dynamic_form) {
+
+            Intent intent = new Intent(MainActivity.this, DynaficFormActivity.class);
             this.startActivity(intent);
             return true;
         }

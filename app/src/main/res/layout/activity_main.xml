@@ -3,12 +3,17 @@
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/content_margin"
         android:id="@+id/main_content">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"></include>
+
 
     <ScrollView
+        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/content_margin">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,20 +43,18 @@
 
                     <TextView
                         android:id="@+id/age_question_1"
-                        android:layout_width="160dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="१. तपाईंको उमेर कती होला?*"
+                        android:textStyle="bold"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" />
 
                     <Spinner
 
                         android:id="@+id/age_Spinner"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/age_question_1"
-                        android:layout_toRightOf="@+id/age_question_1" />
+                        android:layout_below="@id/age_question_1" />
 
 
                 </RelativeLayout>
@@ -70,20 +73,19 @@
 
                     <TextView
                         android:id="@+id/age_question_2"
-                        android:layout_width="160dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="२. तपाईंको लिङ्ग के हो?*"
+                        android:textStyle="bold"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" />
 
                     <Spinner
 
                         android:id="@+id/sex_Spinner"
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/age_question_2"
-                        android:layout_toRightOf="@+id/age_question_2" />
+                      android:layout_below="@id/age_question_2" />
 
                 </RelativeLayout>
                 <ImageView
@@ -101,20 +103,19 @@
 
                     <TextView
                         android:id="@+id/religion_question_3"
-                        android:layout_width="160dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="३. तपाईंको धर्म के हो?*"
+                        android:textStyle="bold"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" />
 
                     <Spinner
 
                         android:id="@+id/religion_Spinner"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/religion_question_3"
-                        android:layout_toRightOf="@+id/religion_question_3" />
+                        android:layout_below="@id/religion_question_3" />
 
                 </RelativeLayout>
                 <ImageView
@@ -132,20 +133,19 @@
 
                     <TextView
                         android:id="@+id/cast_question_4"
-                        android:layout_width="160dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="४. तपाईंको जाति के हो?*"
+                        android:textStyle="bold"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" />
 
                     <Spinner
 
                         android:id="@+id/cast_Spinner"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/cast_question_4"
-                        android:layout_toRightOf="@+id/cast_question_4" />
+                       android:layout_below="@id/cast_question_4" />
 
 
                 </RelativeLayout>
@@ -164,20 +164,19 @@
 
                     <TextView
                         android:id="@+id/vote_question_5"
-                        android:layout_width="160dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:text="५. कुन पार्टीको उमेवारलाई मतदान गर्नुहुन्छ?*"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" />
 
                     <Spinner
 
                         android:id="@+id/vote_Spinner"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/vote_question_5"
-                        android:layout_toRightOf="@+id/vote_question_5" />
+                       android:layout_below="@id/vote_question_5" />
 
                 </RelativeLayout>
                 <ImageView
@@ -195,20 +194,19 @@
 
                     <TextView
                         android:id="@+id/next_election_vote_question_6"
-                        android:layout_width="160dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:text="६. तपाईं आगामी स्थानीय निर्वाचनमा मतदान गर्ने योजना छ?*"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" />
 
                     <Spinner
 
                         android:id="@+id/vote_in_next_election_Spinner"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/next_election_vote_question_6"
-                        android:layout_toRightOf="@+id/next_election_vote_question_6" />
+                        android:layout_below="@id/next_election_vote_question_6"/>
 
                 </RelativeLayout>
                 <ImageView
@@ -226,20 +224,19 @@
 
                     <TextView
                         android:id="@+id/country_question_7"
-                        android:layout_width="160dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:text="७. के तपाईंलाई देश सही दिशामा जाँदै छ लाग्छ?*"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" />
 
                     <Spinner
 
                         android:id="@+id/country_Spinner"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/country_question_7"
-                        android:layout_toRightOf="@+id/country_question_7" />
+                        android:layout_below="@id/country_question_7" />
 
 
                 </RelativeLayout>
@@ -258,20 +255,19 @@
 
                     <TextView
                         android:id="@+id/political_party_question_8"
-                        android:layout_width="160dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="८. तपाईं कुन पार्टीसँग आबद्ध हुनुहुन्छ?*"
+                        android:textStyle="bold"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" />
 
                     <Spinner
 
                         android:id="@+id/political_party_Spinner"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/political_party_question_8"
-                        android:layout_toRightOf="@+id/political_party_question_8" />
+                        android:layout_below="@id/political_party_question_8" />
 
                 </RelativeLayout>
                 <ImageView
@@ -289,20 +285,19 @@
 
                     <TextView
                         android:id="@+id/important_during_election_question_9"
-                        android:layout_width="160dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="९. मतदान गर्दा तपाईंलाई के महत्वोपूर्ण छ?*"
+                        android:textStyle="bold"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" />
 
                     <Spinner
 
                         android:id="@+id/imp_election_Spinner"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/important_during_election_question_9"
-                        android:layout_toRightOf="@+id/important_during_election_question_9" />
+                        android:layout_below="@id/important_during_election_question_9" />
 
                 </RelativeLayout>
                 <ImageView
@@ -320,20 +315,19 @@
 
                     <TextView
                         android:id="@+id/nepal_problem_question_10"
-                        android:layout_width="160dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:text="१०. तपाईंको बिचारमा नेपालको सबैभन्दा महत्वोपूर्ण समस्या के हो?*"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" />
 
                     <Spinner
 
                         android:id="@+id/nepal_problem_Spinner"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/nepal_problem_question_10"
-                        android:layout_toRightOf="@+id/nepal_problem_question_10" />
+                        android:layout_below="@id/nepal_problem_question_10"/>
 
 
                 </RelativeLayout>
@@ -352,20 +346,19 @@
 
                     <TextView
                         android:id="@+id/talk_to_political_leader_question_11"
-                        android:layout_width="160dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:text="११. तपाईं पार्टी को मुख्य नेता बीच एक बहस रुचाउनुहुन्छ?*"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" />
 
                     <Spinner
 
                         android:id="@+id/talk_political_leader_Spinner"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/talk_to_political_leader_question_11"
-                        android:layout_toRightOf="@+id/talk_to_political_leader_question_11" />
+                        android:layout_below="@id/talk_to_political_leader_question_11"/>
 
                 </RelativeLayout>
                 <ImageView
@@ -383,20 +376,19 @@
 
                     <TextView
                         android:id="@+id/prime_minister_evaluation_question_12"
-                        android:layout_width="160dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:text="१२. तपाईं वर्तमान प्रधानमन्त्री प्रचन्डको कार्यकाल कसरी मूल्याङ्कन गर्नु हुन्छ?*"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" />
 
                     <Spinner
 
                         android:id="@+id/evaluation_pm_Spinner"
-                        android:layout_width="160dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/prime_minister_evaluation_question_12"
-                        android:layout_toRightOf="@+id/prime_minister_evaluation_question_12" />
+                        android:layout_below="@id/prime_minister_evaluation_question_12" />
 
                 </RelativeLayout>
                 <ImageView
@@ -414,20 +406,19 @@
 
                     <TextView
                         android:id="@+id/resident_question_13"
-                        android:layout_width="160dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="१३. बास स्थान*"
+                        android:textStyle="bold"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" />
 
                     <Spinner
 
                         android:id="@+id/resident_Spinner"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/resident_question_13"
-                        android:layout_toRightOf="@+id/resident_question_13" />
+                       android:layout_below="@id/resident_question_13" />
 
                 </RelativeLayout>
                 <ImageView
@@ -446,20 +437,19 @@
 
                     <TextView
                         android:id="@+id/birth_question_14"
-                        android:layout_width="160dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:text="१४. जन्म स्थान*"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" />
 
                     <Spinner
 
                         android:id="@+id/birth_Spinner"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/birth_question_14"
-                        android:layout_toRightOf="@+id/birth_question_14" />
+                        android:layout_below="@id/birth_question_14" />
 
                 </RelativeLayout>
                 <ImageView
@@ -477,20 +467,19 @@
 
                     <TextView
                         android:id="@+id/origin_question_15"
-                        android:layout_width="160dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:text="१५. तपाईं आफूलाई कुन मूलको ठान्नु हुन्छ?*"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" />
 
                     <Spinner
 
                         android:id="@+id/origin_Spinner"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/origin_question_15"
-                        android:layout_toRightOf="@+id/origin_question_15" />
+                        android:layout_below="@id/origin_question_15"/>
 
                 </RelativeLayout>
                 <ImageView
@@ -509,20 +498,19 @@
 
                     <TextView
                         android:id="@+id/monthly_salary_question_16"
-                        android:layout_width="160dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text=" १६. मासिक आय*"
+                        android:textStyle="bold"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" />
 
                     <Spinner
 
                         android:id="@+id/monthly_salary_Spinner"
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/monthly_salary_question_16"
-                        android:layout_toRightOf="@+id/monthly_salary_question_16" />
+                        android:layout_below="@id/monthly_salary_question_16" />
 
                 </RelativeLayout>
                 <ImageView
