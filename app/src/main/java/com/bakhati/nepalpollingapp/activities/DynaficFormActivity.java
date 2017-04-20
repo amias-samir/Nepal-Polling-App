@@ -14,6 +14,7 @@ import android.util.Log;
 
 import com.bakhati.nepalpollingapp.R;
 import com.bakhati.nepalpollingapp.fragments.SpinnerFragment;
+import com.bakhati.nepalpollingapp.model.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class DynaficFormActivity extends AppCompatActivity {
     Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    public static final String TAG = "PoolingDynaficFormActivity";
+    public static final String TAG = "DynamicFormActivity";
     public static int tab_position;
     public static Bundle bundle;
 
@@ -64,25 +65,29 @@ public class DynaficFormActivity extends AppCompatActivity {
 
 
 
-        for (int i = 0 ; i< test.length; i++) {
+        for (int i = 0 ; i<  Constants.QUESTIONS.length; i++) {
 
-            String tab_no = Integer.toString(i+1);
+            String tab_no = Integer.toString(i);
 
-            if(test[i].equals("spinner")){
-                adapter.addFragment(new SpinnerFragment(), tab_no);
-
+//            if(test[i].equals("spinner")){
                 tab_position = i ;
+            String spinerFragmentTAG = "fragment"+i;
 
+            SpinnerFragment spinnerFragObj = new SpinnerFragment();
+            // set Fragmentclass Arguments
                 bundle = new Bundle();
-                bundle.putString("tab_position", "from_activity");
-// set Fragmentclass Arguments
-                SpinnerFragment spinnerFragObj = new SpinnerFragment();
+                bundle.putString("tab_position", tab_no);
+                bundle.putString("spinner_qn", Constants.QUESTIONS[i]); //only one
                 spinnerFragObj.setArguments(bundle);
-//                FragmentTransaction fragmentTransaction = spinnerFragObj.beginTransaction();
-//                fragmentTransaction.replace(R.id.main_content, spinnerFragObj);
-//                fragmentTransaction.commit();
-                Log.e(TAG, "Bundle: "+""+bundle);
-            }
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_content_spinner, spinnerFragObj, spinerFragmentTAG);
+                fragmentTransaction.commit();
+            adapter.addFragment(new SpinnerFragment(), tab_no);
+            Log.e(TAG, "Sent_Bundle: "+""+bundle);
+
+
+
+//            }
         }
 
         viewPager.setAdapter(adapter);
