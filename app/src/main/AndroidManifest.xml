@@ -40,6 +40,7 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
+            android:exported="true"
             android:name=".activities.DynaficFormActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar"

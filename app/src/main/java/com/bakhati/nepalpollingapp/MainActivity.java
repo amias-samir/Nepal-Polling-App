@@ -30,6 +30,7 @@ import com.bakhati.nepalpollingapp.activities.DynaficFormActivity;
 import com.bakhati.nepalpollingapp.activities.SavedFormsActivity;
 import com.bakhati.nepalpollingapp.database.DataBaseNepalPoolingAppSent;
 import com.bakhati.nepalpollingapp.database.DatabaseNepalPoolingAppNotSent;
+import com.bakhati.nepalpollingapp.fragments.onAnswerSelectedListener;
 import com.bakhati.nepalpollingapp.model.CheckValues;
 import com.bakhati.nepalpollingapp.model.Constants;
 import com.bakhati.nepalpollingapp.model.UrlClass;
@@ -759,6 +760,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
+
+
+
     public void sendDatToserver() {
 
         if (jsonToSend.length() > 0) {
@@ -849,6 +853,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
     }
+
+
 
 
     private class RestApii extends AsyncTask<String, Void, String> {
