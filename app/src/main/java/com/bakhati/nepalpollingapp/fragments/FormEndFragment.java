@@ -38,7 +38,7 @@ public class FormEndFragment extends Fragment implements DynamicFormActivity.onF
             @Override
             public void onClick(View v)
             {
-                notifyFormHasEnded();
+                notifySendForm();
 
             }
         });
@@ -93,7 +93,7 @@ public class FormEndFragment extends Fragment implements DynamicFormActivity.onF
 
     }
 
-    private void notifyFormHasEnded() {
+    private void notifySendForm() {
 
         try {
             listener.uploadForm();

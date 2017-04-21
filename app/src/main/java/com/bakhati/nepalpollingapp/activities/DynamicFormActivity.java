@@ -72,6 +72,7 @@ public class DynamicFormActivity extends AppCompatActivity implements onAnswerSe
     Context context = this;
     NetworkInfo networkInfo;
     ConnectivityManager connectivityManager;
+    Button ButtonPrev, ButtonNext ;
 
 
     @Override
@@ -84,6 +85,8 @@ public class DynamicFormActivity extends AppCompatActivity implements onAnswerSe
         toolbar.setTitle("Nepal Polling App");
         setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ButtonPrev = (Button) findViewById(R.id.prevBtn);
+        ButtonNext = (Button) findViewById(R.id.nextBtn);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -460,7 +463,6 @@ public class DynamicFormActivity extends AppCompatActivity implements onAnswerSe
         });    }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -487,5 +489,17 @@ public class DynamicFormActivity extends AppCompatActivity implements onAnswerSe
         return super.onOptionsItemSelected(item);
     }
 
+//    public void firstFragment (){
+//        ButtonPrev.setVisibility(View.GONE);
+//    }
+//
+//    public void lastFragment (){
+//        ButtonNext.setVisibility(View.GONE);
+//    }
+//
+//    public void formFragment (){
+//        ButtonNext.setVisibility(View.VISIBLE);
+//        ButtonPrev.setVisibility(View.VISIBLE);
+//    }
 
 }

@@ -30,6 +30,7 @@ public class SpinnerFragment extends Fragment implements DynamicFormActivity.onF
     private onAnswerSelectedListener listener;
 
 
+
     public SpinnerFragment() {
     }
 
@@ -38,7 +39,6 @@ public class SpinnerFragment extends Fragment implements DynamicFormActivity.onF
                              Bundle savedInstanceState) {
         View rootview = inflater.inflate(R.layout.fragment_spinner, container, false);
         initUI(rootview);
-
         return rootview;
 
     }
@@ -186,7 +186,6 @@ public class SpinnerFragment extends Fragment implements DynamicFormActivity.onF
 
 
     }
-
 
 }
 

@@ -15,6 +15,7 @@ import com.bakhati.nepalpollingapp.activities.DynamicFormActivity;
 
 public class FormStartFragment  extends Fragment implements   DynamicFormActivity.onFragmentVisibleListener {
 
+    onFormFinishedListener listener;
 
     public FormStartFragment() {
     }
@@ -23,7 +24,6 @@ public class FormStartFragment  extends Fragment implements   DynamicFormActivit
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootview = inflater.inflate(R.layout.fragment_start, container, false);
-
         return rootview;
 
     }
@@ -32,4 +32,5 @@ public class FormStartFragment  extends Fragment implements   DynamicFormActivit
     public void fragmentBecameVisible(int position) {
 
     }
+
 }
