@@ -6,5 +6,5 @@ package com.bakhati.nepalpollingapp.model;
 
 public class UrlClass {
 
-    public static String URL_DATA_SEND = "http://naxa.com.np/surveyman/ApiController/insertdata";
+    public static String URL_DATA_SEND = "http://naxa.com.np/nepalpolling/ApiController/insertdata";
 }

@@ -144,50 +144,43 @@ public class SpinnerFragment extends Fragment implements DynaficFormActivity.onF
 
                 break;
             case 7:
-                answers = Constants.DURING_ElECTION;
+                answers = Constants.VOTE_POLITICAL_PARTY;
 
                 break;
             case 8:
-                answers = Constants.NEPAL_PROBLEM;
+                answers = Constants.DURING_ElECTION;
 
                 break;
             case 9:
-                answers = Constants.TALK_LEADER;
+                answers = Constants.NEPAL_PROBLEM;
 
                 break;
             case 10:
-                answers = Constants.EVALUATION;
+                answers = Constants.TALK_LEADER;
 
                 break;
             case 11:
-                answers = Constants.DISTRICT;
+                answers = Constants.EVALUATION;
 
                 break;
             case 12:
                 //todo this is wrong
-                answers = Constants.ORIGINALITY;
+                answers = Constants.DISTRICT;
 
                 break;
             case 13:
-                answers = Constants.ORIGINALITY;
+                answers = Constants.DISTRICT;
 
                 break;
             case 14:
-                answers = Constants.MONTHLY_INCOME;
+                answers = Constants.ORIGINALITY;
 
                 break;
             case 15:
-                answers = Constants.VOTE_IN_NEXT_ELECTION;
+                answers = Constants.MONTHLY_INCOME;
 
                 break;
-            case 16:
-                answers = Constants.VOTE_IN_NEXT_ELECTION;
 
-                break;
-            case 17:
-                answers = Constants.VOTE_IN_NEXT_ELECTION;
-
-                break;
 
         }
 
