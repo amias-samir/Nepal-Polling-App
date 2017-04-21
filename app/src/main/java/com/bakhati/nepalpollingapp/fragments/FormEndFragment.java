@@ -1,7 +1,6 @@
 package com.bakhati.nepalpollingapp.fragments;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,13 +11,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.bakhati.nepalpollingapp.R;
-import com.bakhati.nepalpollingapp.activities.DynaficFormActivity;
+import com.bakhati.nepalpollingapp.activities.DynamicFormActivity;
 
 /**
  * Created by nishon.tan on 4/21/2017.
  */
 
-public class FormEndFragment extends Fragment implements DynaficFormActivity.onFragmentVisibleListener {
+public class FormEndFragment extends Fragment implements DynamicFormActivity.onFragmentVisibleListener {
 
     onFormFinishedListener listener;
     Button save, send ;
@@ -32,6 +31,7 @@ public class FormEndFragment extends Fragment implements DynaficFormActivity.onF
         View rootview = inflater.inflate(R.layout.fragment_form_end, container, false);
 
         send = (Button)rootview.findViewById(R.id.send);
+        save = (Button)rootview.findViewById(R.id.save);
 
         send.setOnClickListener(new View.OnClickListener()
         {
@@ -42,8 +42,27 @@ public class FormEndFragment extends Fragment implements DynaficFormActivity.onF
 
             }
         });
+        save.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                notifySaveForm();
+
+            }
+        });
 
         return rootview;
+
+    }
+
+    private void notifySaveForm() {
+
+        try {
+            listener.saveForm();
+        } catch (ClassCastException cce) {
+
+        }
 
     }
 
@@ -71,6 +90,7 @@ public class FormEndFragment extends Fragment implements DynaficFormActivity.onF
 
     @Override
     public void fragmentBecameVisible(int position) {
+
     }
 
     private void notifyFormHasEnded() {

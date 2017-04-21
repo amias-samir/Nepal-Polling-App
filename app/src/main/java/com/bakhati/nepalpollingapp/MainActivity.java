@@ -26,11 +26,10 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.bakhati.nepalpollingapp.activities.DynaficFormActivity;
+import com.bakhati.nepalpollingapp.activities.DynamicFormActivity;
 import com.bakhati.nepalpollingapp.activities.SavedFormsActivity;
 import com.bakhati.nepalpollingapp.database.DataBaseNepalPoolingAppSent;
 import com.bakhati.nepalpollingapp.database.DatabaseNepalPoolingAppNotSent;
-import com.bakhati.nepalpollingapp.fragments.onAnswerSelectedListener;
 import com.bakhati.nepalpollingapp.model.CheckValues;
 import com.bakhati.nepalpollingapp.model.Constants;
 import com.bakhati.nepalpollingapp.model.UrlClass;
@@ -84,8 +83,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Nepal Polling App");
+        toolbar.setTitle("Saved Forms");
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         spinner_age = (Spinner)findViewById(R.id.age_Spinner);
         spinner_sex = (Spinner)findViewById(R.id.sex_Spinner);
@@ -975,7 +975,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main_load_form, menu);
         return true;
     }
 
@@ -996,7 +996,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         if (id == R.id.menu_item_dynamic_form) {
 
-            Intent intent = new Intent(MainActivity.this, DynaficFormActivity.class);
+            Intent intent = new Intent(MainActivity.this, DynamicFormActivity.class);
             this.startActivity(intent);
             return true;
         }

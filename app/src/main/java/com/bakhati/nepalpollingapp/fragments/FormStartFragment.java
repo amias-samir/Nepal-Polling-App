@@ -7,13 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bakhati.nepalpollingapp.R;
-import com.bakhati.nepalpollingapp.activities.DynaficFormActivity;
+import com.bakhati.nepalpollingapp.activities.DynamicFormActivity;
 
 /**
  * Created by nishon.tan on 4/21/2017.
  */
 
-public class FormStartFragment  extends Fragment implements   DynaficFormActivity.onFragmentVisibleListener {
+public class FormStartFragment  extends Fragment implements   DynamicFormActivity.onFragmentVisibleListener {
 
 
     public FormStartFragment() {

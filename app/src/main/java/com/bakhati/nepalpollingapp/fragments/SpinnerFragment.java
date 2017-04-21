@@ -16,11 +16,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bakhati.nepalpollingapp.R;
-import com.bakhati.nepalpollingapp.activities.DynaficFormActivity;
+import com.bakhati.nepalpollingapp.activities.DynamicFormActivity;
 import com.bakhati.nepalpollingapp.model.Constants;
 
 
-public class SpinnerFragment extends Fragment implements DynaficFormActivity.onFragmentVisibleListener {
+public class SpinnerFragment extends Fragment implements DynamicFormActivity.onFragmentVisibleListener {
     private Spinner answersSpinner;
     private TextView tvQuestionLBL;
     private final String TAG = "SpinnerFragment";

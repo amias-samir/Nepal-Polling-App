@@ -8,4 +8,8 @@
         android:orderInCategory="100"
         app:showAsAction="never" />
 
+    <item android:id="@+id/menu_item_dynamic_form"
+        android:title="Home"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
 </menu>

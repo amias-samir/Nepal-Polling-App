@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
-    <item android:id="@+id/menu_item_saved_forms"
-        android:title="View Saved Forms"
+
+    <item android:id="@+id/menu_item_dynamic_form"
+        android:title="Home"
         android:orderInCategory="100"
         app:showAsAction="never" />
-
 </menu>
