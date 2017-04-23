@@ -4,8 +4,21 @@
     tools:context=".MainActivity">
 
 
-    <item android:id="@+id/menu_item_dynamic_form"
-        android:title="Home"
+    <item
+        android:id="@+id/menu_item_dynamic_form"
         android:orderInCategory="100"
+        android:title="Home"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_item_about_us"
+        android:orderInCategory="100"
+        android:title="About Us"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_item_privacy_policy"
+        android:orderInCategory="100"
+        android:title="Privacy Policy"
         app:showAsAction="never" />
 </menu>

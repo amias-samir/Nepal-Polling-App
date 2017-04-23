@@ -14,8 +14,6 @@ import com.bakhati.nepalpollingapp.model.SavedFormParameters;
 
 import java.util.List;
 
-import static android.content.ContentValues.TAG;
-
 
 /**
  * Created by Samir on 3/13/2017.
@@ -63,7 +61,7 @@ public class Sent_Forms_Adapter extends RecyclerView.Adapter<Sent_Forms_Adapter.
     public ContactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
-                inflate(R.layout.card_view_saved_forms, viewGroup, false);
+                inflate(R.layout.card_view_sent_forms, viewGroup, false);
 
         return new ContactViewHolder(itemView);
     }

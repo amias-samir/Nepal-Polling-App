@@ -8,48 +8,17 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="180dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
 
         <ImageView
-            android:id="@+id/fwdr"
+            android:id="@+id/polling_img"
             android:layout_width="120dp"
             android:layout_height="80dp"
-            android:background="@drawable/data_collection"
+            android:background="@mipmap/ic_launcher"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
-
-        <!--<TextView-->
-        <!--android:id="@+id/textView"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:gravity="center_horizontal"-->
-        <!--android:layout_marginLeft="15dp"-->
-        <!--android:layout_marginRight="15dp"-->
-        <!--android:text="Far Western Development Region"-->
-        <!--android:textColor="@color/white"-->
-        <!--android:textStyle="bold"-->
-        <!--android:textSize="20dp" />-->
-
-
-        <!--<TextView-->
-        <!--android:id="@+id/textView2"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/textView"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:gravity="center_horizontal"-->
-        <!--android:layout_marginLeft="15dp"-->
-        <!--android:layout_marginRight="15dp"-->
-        <!--android:text="Beautiful Far West, Prosperous Far West"-->
-        <!--android:textColor="@color/white"-->
-        <!--android:textStyle="normal"-->
-        <!--android:textSize="15dp" />-->
-
-
-        <!--android:layout_below="@+id/textView2"-->
 
         <TextView
             android:id="@+id/textView3"
@@ -58,10 +27,11 @@
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
             android:gravity="center_horizontal"
-            android:text="NPA"
+            android:text="Nepal Polling"
             android:textColor="@color/white"
-            android:layout_below="@+id/fwdr"
+            android:layout_below="@+id/polling_img"
             android:textStyle="bold"
             android:textSize="30dp" />
 
@@ -74,9 +44,9 @@
             android:gravity="center_horizontal"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:text="Nepal Polling App"
+            android:text=" Powered by DataNepal"
             android:textColor="@color/white"
-            android:textSize="20dp" />
+            android:textSize="18dp" />
     </RelativeLayout>
 
     <!--<RelativeLayout-->

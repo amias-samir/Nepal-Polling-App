@@ -37,20 +37,34 @@
             android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.SavedFormsActivity" />
-            </activity>
-
+        </activity>
         <activity
-            android:exported="true"
             android:name=".activities.DynamicFormActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name=".activities.PrivacyPolicyActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar"
             android:windowSoftInputMode="stateHidden">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.DynamicFormActivity" />
         </activity>
-
+        <activity android:name=".activities.AboutUsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar"
+            android:windowSoftInputMode="stateHidden">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.DynamicFormActivity"/>
+        </activity>
     </application>
 
 </manifest>

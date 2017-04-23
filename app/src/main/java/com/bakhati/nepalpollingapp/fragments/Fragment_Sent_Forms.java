@@ -104,7 +104,9 @@ public class Fragment_Sent_Forms extends Fragment {
                 if (items[item] == "Open") {
                     String id = resultCur.get(position).formId;
                     String jSon = resultCur.get(position).jSON;
-                    loadForm(id, jSon);
+                    String DBid = resultCur.get(position).dbId;
+                    String sent_Status = resultCur.get(position).status;
+                    loadForm(id, jSon, DBid, sent_Status);
 
                 } else if (items[item] == "Delete") {
                     DisplayMetrics metrics = getActivity().getResources().getDisplayMetrics();
@@ -197,11 +199,13 @@ public class Fragment_Sent_Forms extends Fragment {
 
     }
 
-    public void loadForm(String formId, String jsonData){
+    public void loadForm(String formId, String jsonData, String DBid, String sent_Status){
         switch (formId){
             case "1" :
                 Intent intent1 = new Intent(getActivity(), MainActivity.class);
                 intent1.putExtra("JSON1", jsonData);
+                intent1.putExtra("DBid", DBid);
+                intent1.putExtra("sent_Status", sent_Status);
                 startActivity(intent1);
                 break;
 

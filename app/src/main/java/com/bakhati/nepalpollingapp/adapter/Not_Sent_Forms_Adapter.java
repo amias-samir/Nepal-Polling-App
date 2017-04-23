@@ -46,6 +46,7 @@ public class Not_Sent_Forms_Adapter extends RecyclerView.Adapter<Not_Sent_Forms_
         contactViewHolder.formStatus.setText(ci.status);
 
 //        if(ci.status.equals("Not Sent") ){
+
             contactViewHolder.statusIcon.setImageResource(R.drawable.circuler_background_not_sent);
         }
 
@@ -57,7 +58,7 @@ public class Not_Sent_Forms_Adapter extends RecyclerView.Adapter<Not_Sent_Forms_
     public ContactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
-                inflate(R.layout.card_view_saved_forms, viewGroup, false);
+                inflate(R.layout.card_view_not_sent_forms, viewGroup, false);
 
         return new ContactViewHolder(itemView);
     }

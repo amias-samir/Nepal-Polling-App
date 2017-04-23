@@ -12,6 +12,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -26,7 +27,9 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bakhati.nepalpollingapp.activities.AboutUsActivity;
 import com.bakhati.nepalpollingapp.activities.DynamicFormActivity;
+import com.bakhati.nepalpollingapp.activities.PrivacyPolicyActivity;
 import com.bakhati.nepalpollingapp.activities.SavedFormsActivity;
 import com.bakhati.nepalpollingapp.database.DataBaseNepalPoolingAppSent;
 import com.bakhati.nepalpollingapp.database.DatabaseNepalPoolingAppNotSent;
@@ -52,30 +55,31 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private static final String TAG = "MainActivity" ;
+    private static final String TAG = "MainActivity";
     Toolbar toolbar;
-    Button save , send ;
+    Button save, send;
+    CardView cv_Send_Save;
     NetworkInfo networkInfo;
     ConnectivityManager connectivityManager;
     String dataSentStatus, dateString;
     ProgressDialog mProgressDlg;
     Context context = this;
-    String jsonToSend ;
-    String formid ;
+    String jsonToSend;
+    String formid, sent_Status;
 
-    Spinner spinner_age, spinner_sex, spinner_religion,spinner_cast, spinner_vote,
-            spinner_coming_election, spinner_country_movement,spinner_political_party,
-            spinner_imp_election,spinner_nepal_problem,spinner_talk_leader,spinner_evaluation_pm,
-            spinner_resident,spinner_birthplace,spinner_monthly_salary,spinner_originality;
+    Spinner spinner_age, spinner_sex, spinner_religion, spinner_cast, spinner_vote,
+            spinner_coming_election, spinner_country_movement, spinner_political_party,
+            spinner_imp_election, spinner_nepal_problem, spinner_talk_leader, spinner_evaluation_pm,
+            spinner_resident, spinner_birthplace, spinner_monthly_salary, spinner_originality;
 
-    ArrayAdapter adpt_age, adpt_sex, adpt_religion,adpt_cast, adpt_vote,
-            adpt_coming_election, adpt_country_movement,adpt_political_party,
-            adpt_imp_election,adpt_nepal_problem,adpt_talk_leader,adpt_evaluation_pm,
-            adpt_resident,adpt_birthplace,adpt_monthly_salary,adpt_originality;
+    ArrayAdapter adpt_age, adpt_sex, adpt_religion, adpt_cast, adpt_vote,
+            adpt_coming_election, adpt_country_movement, adpt_political_party,
+            adpt_imp_election, adpt_nepal_problem, adpt_talk_leader, adpt_evaluation_pm,
+            adpt_resident, adpt_birthplace, adpt_monthly_salary, adpt_originality;
 
 
-    String   age, sex, religion,cast, vote,coming_election, country_movement, political_party, imp_election,
-            nepal_problem,talk_leader,evaluation_pm, resident,birthplace, originality,monthly_salary;
+    String age, sex, religion, cast, vote, coming_election, country_movement, political_party, imp_election,
+            nepal_problem, talk_leader, evaluation_pm, resident, birthplace, originality, monthly_salary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,123 +91,123 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        spinner_age = (Spinner)findViewById(R.id.age_Spinner);
-        spinner_sex = (Spinner)findViewById(R.id.sex_Spinner);
-        spinner_religion = (Spinner)findViewById(R.id.religion_Spinner);
-        spinner_cast = (Spinner)findViewById(R.id.cast_Spinner);
-        spinner_vote = (Spinner)findViewById(R.id.vote_Spinner);
-        spinner_coming_election = (Spinner)findViewById(R.id.vote_in_next_election_Spinner);
-        spinner_country_movement = (Spinner)findViewById(R.id.country_Spinner);
-        spinner_political_party = (Spinner)findViewById(R.id.political_party_Spinner);
-        spinner_imp_election = (Spinner)findViewById(R.id.imp_election_Spinner);
-        spinner_nepal_problem = (Spinner)findViewById(R.id.nepal_problem_Spinner);
-        spinner_talk_leader = (Spinner)findViewById(R.id.talk_political_leader_Spinner);
-        spinner_evaluation_pm = (Spinner)findViewById(R.id.evaluation_pm_Spinner);
-        spinner_resident = (Spinner)findViewById(R.id.resident_Spinner);
-        spinner_birthplace = (Spinner)findViewById(R.id.birth_Spinner);
-        spinner_monthly_salary = (Spinner)findViewById(R.id.monthly_salary_Spinner);
-        spinner_originality = (Spinner)findViewById(R.id.origin_Spinner);
+        spinner_age = (Spinner) findViewById(R.id.age_Spinner);
+        spinner_sex = (Spinner) findViewById(R.id.sex_Spinner);
+        spinner_religion = (Spinner) findViewById(R.id.religion_Spinner);
+        spinner_cast = (Spinner) findViewById(R.id.cast_Spinner);
+        spinner_vote = (Spinner) findViewById(R.id.vote_Spinner);
+        spinner_coming_election = (Spinner) findViewById(R.id.vote_in_next_election_Spinner);
+        spinner_country_movement = (Spinner) findViewById(R.id.country_Spinner);
+        spinner_political_party = (Spinner) findViewById(R.id.political_party_Spinner);
+        spinner_imp_election = (Spinner) findViewById(R.id.imp_election_Spinner);
+        spinner_nepal_problem = (Spinner) findViewById(R.id.nepal_problem_Spinner);
+        spinner_talk_leader = (Spinner) findViewById(R.id.talk_political_leader_Spinner);
+        spinner_evaluation_pm = (Spinner) findViewById(R.id.evaluation_pm_Spinner);
+        spinner_resident = (Spinner) findViewById(R.id.resident_Spinner);
+        spinner_birthplace = (Spinner) findViewById(R.id.birth_Spinner);
+        spinner_monthly_salary = (Spinner) findViewById(R.id.monthly_salary_Spinner);
+        spinner_originality = (Spinner) findViewById(R.id.origin_Spinner);
+        cv_Send_Save = (CardView) findViewById(R.id.card_view_send_save);
 
         save = (Button) findViewById(R.id.save);
         send = (Button) findViewById(R.id.send);
 
 
-
         // age Spinner
 
-        adpt_age = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, Constants.AGE);
+        adpt_age = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Constants.AGE);
         adpt_age.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_age.setAdapter(adpt_age);
         spinner_age.setOnItemSelectedListener(this);
 
         // sex spinner
-        adpt_sex = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Constants.SEX);
+        adpt_sex = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Constants.SEX);
         adpt_sex.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_sex.setAdapter(adpt_sex);
         spinner_sex.setOnItemSelectedListener(this);
 
 
         // religion spinner
-        adpt_religion = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Constants.RELIGION);
+        adpt_religion = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Constants.RELIGION);
         adpt_religion.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_religion.setAdapter(adpt_religion);
         spinner_religion.setOnItemSelectedListener(this);
 
         // cast spinner
-        adpt_cast = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Constants.CAST);
+        adpt_cast = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Constants.CAST);
         adpt_cast.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_cast.setAdapter(adpt_cast);
         spinner_cast.setOnItemSelectedListener(this);
 
         // voting spinner
-        adpt_vote = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Constants.VOTE_POLITICAL_PARTY);
+        adpt_vote = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Constants.VOTE_POLITICAL_PARTY);
         adpt_vote.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_vote.setAdapter(adpt_vote);
         spinner_vote.setOnItemSelectedListener(this);
 
 
         // vote in coming election spinner
-        adpt_coming_election = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Constants.VOTE_IN_NEXT_ELECTION);
+        adpt_coming_election = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Constants.VOTE_IN_NEXT_ELECTION);
         adpt_coming_election.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_coming_election.setAdapter(adpt_coming_election);
         spinner_coming_election.setOnItemSelectedListener(this);
 
         // country condition and movement spinner
-        adpt_country_movement = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Constants.COUNTRY_MOVEMENT);
+        adpt_country_movement = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Constants.COUNTRY_MOVEMENT);
         adpt_country_movement.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_country_movement.setAdapter(adpt_country_movement);
         spinner_country_movement.setOnItemSelectedListener(this);
 
         // which political party you belongs spinner
-        adpt_political_party = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Constants.VOTE_POLITICAL_PARTY);
+        adpt_political_party = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Constants.VOTE_POLITICAL_PARTY);
         adpt_political_party.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_political_party.setAdapter(adpt_political_party);
         spinner_political_party.setOnItemSelectedListener(this);
 
         // important during election spinner
-        adpt_imp_election = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Constants.DURING_ElECTION);
+        adpt_imp_election = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Constants.DURING_ElECTION);
         adpt_imp_election.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_imp_election.setAdapter(adpt_imp_election);
         spinner_imp_election.setOnItemSelectedListener(this);
 
         // nepal problem spinner
-        adpt_nepal_problem = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Constants.NEPAL_PROBLEM);
+        adpt_nepal_problem = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Constants.NEPAL_PROBLEM);
         adpt_nepal_problem.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_nepal_problem.setAdapter(adpt_nepal_problem);
         spinner_nepal_problem.setOnItemSelectedListener(this);
 
         // talk to your leader spinner
-        adpt_talk_leader = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Constants.TALK_LEADER);
+        adpt_talk_leader = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Constants.TALK_LEADER);
         adpt_talk_leader.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_talk_leader.setAdapter(adpt_talk_leader);
         spinner_talk_leader.setOnItemSelectedListener(this);
 
         // evaluation of current prime minister spinner
-        adpt_evaluation_pm = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Constants.EVALUATION);
+        adpt_evaluation_pm = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Constants.EVALUATION);
         adpt_evaluation_pm.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_evaluation_pm.setAdapter(adpt_evaluation_pm);
         spinner_evaluation_pm.setOnItemSelectedListener(this);
 
         // resident spinner
-        adpt_resident = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Constants.DISTRICT);
+        adpt_resident = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Constants.DISTRICT);
         adpt_resident.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_resident.setAdapter(adpt_resident);
         spinner_resident.setOnItemSelectedListener(this);
 
         // birthplace  spinner
-        adpt_birthplace = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Constants.DISTRICT);
+        adpt_birthplace = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Constants.DISTRICT);
         adpt_birthplace.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_birthplace.setAdapter(adpt_birthplace);
         spinner_birthplace.setOnItemSelectedListener(this);
 
         // monthly salary spinner
-        adpt_monthly_salary = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Constants.MONTHLY_INCOME);
+        adpt_monthly_salary = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Constants.MONTHLY_INCOME);
         adpt_monthly_salary.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_monthly_salary.setAdapter(adpt_monthly_salary);
         spinner_monthly_salary.setOnItemSelectedListener(this);
 
         // originality spinner
-        adpt_originality = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Constants.ORIGINALITY);
+        adpt_originality = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Constants.ORIGINALITY);
         adpt_originality.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_originality.setAdapter(adpt_originality);
         spinner_originality.setOnItemSelectedListener(this);
@@ -220,57 +224,57 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v) {
 
-                        convertDataToJson();
+                convertDataToJson();
 
-                        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-                        int width = metrics.widthPixels;
-                        int height = metrics.heightPixels;
+                DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+                int width = metrics.widthPixels;
+                int height = metrics.heightPixels;
 
-                        final Dialog showDialog = new Dialog(context);
-                        showDialog.setContentView(R.layout.date_input_layout);
-                        final EditText FormNameToInput = (EditText) showDialog.findViewById(R.id.input_tableName);
-                        final EditText dateToInput = (EditText) showDialog.findViewById(R.id.input_date);
-                        FormNameToInput.setText("Survey Data");
+                final Dialog showDialog = new Dialog(context);
+                showDialog.setContentView(R.layout.date_input_layout);
+                final EditText FormNameToInput = (EditText) showDialog.findViewById(R.id.input_tableName);
+                final EditText dateToInput = (EditText) showDialog.findViewById(R.id.input_date);
+                FormNameToInput.setText("Survey Data");
 
-                        long date = System.currentTimeMillis();
+                long date = System.currentTimeMillis();
 
-                        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy h:mm a");
-                        String dateString = sdf.format(date);
-                        dateToInput.setText(dateString);
+                SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy h:mm a");
+                String dateString = sdf.format(date);
+                dateToInput.setText(dateString);
 
-                        AppCompatButton logIn = (AppCompatButton) showDialog.findViewById(R.id.login_button);
-                        showDialog.setTitle("Save Data");
-                        showDialog.setCancelable(true);
-                        showDialog.show();
-                        showDialog.getWindow().setLayout((6 * width) / 7, LinearLayout.LayoutParams.WRAP_CONTENT);
+                AppCompatButton logIn = (AppCompatButton) showDialog.findViewById(R.id.login_button);
+                showDialog.setTitle("Save Data");
+                showDialog.setCancelable(true);
+                showDialog.show();
+                showDialog.getWindow().setLayout((6 * width) / 7, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-                        logIn.setOnClickListener(new View.OnClickListener() {
-//
-                            @Override
-                            public void onClick(View v) {
-                                // TODO Auto-generated method stub
-                                String dateDataCollected = dateToInput.getText().toString();
-                                String formName = FormNameToInput.getText().toString();
-                                if (dateDataCollected == null || dateDataCollected.equals("") || formName == null || formName.equals("")) {
-                                    Toast.makeText(context, "Please fill the required field. ", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    String[] data = new String[]{"1", formName, dateDataCollected, jsonToSend, "Not Sent", "0"};
+                logIn.setOnClickListener(new View.OnClickListener() {
+                    //
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+                        String dateDataCollected = dateToInput.getText().toString();
+                        String formName = FormNameToInput.getText().toString();
+                        if (dateDataCollected == null || dateDataCollected.equals("") || formName == null || formName.equals("")) {
+                            Toast.makeText(context, "Please fill the required field. ", Toast.LENGTH_SHORT).show();
+                        } else {
+                            String[] data = new String[]{"1", formName, dateDataCollected, jsonToSend, "Not Sent", "0"};
 
-                                    DatabaseNepalPoolingAppNotSent dataBaseNepalPoolingAppNotSent = new DatabaseNepalPoolingAppNotSent(context);
-                                    dataBaseNepalPoolingAppNotSent.open();
-                                    long id = dataBaseNepalPoolingAppNotSent.insertIntoTable_Main(data);
+                            DatabaseNepalPoolingAppNotSent dataBaseNepalPoolingAppNotSent = new DatabaseNepalPoolingAppNotSent(context);
+                            dataBaseNepalPoolingAppNotSent.open();
+                            long id = dataBaseNepalPoolingAppNotSent.insertIntoTable_Main(data);
 
 //                                    new SweetAlertDialog(context, SweetAlertDialog.SUCCESS_TYPE)
 //                                            .setTitleText("Job done!")
 //                                            .setContentText("Data saved successfully!")
 //                                            .show();
-                                    dataBaseNepalPoolingAppNotSent.close();
-                                    Toast.makeText(MainActivity.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
-                                    showDialog.dismiss();
-                                }
-                            }
-                        });
+                            dataBaseNepalPoolingAppNotSent.close();
+                            Toast.makeText(MainActivity.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
+                            showDialog.dismiss();
+                        }
                     }
+                });
+            }
 //                }
 //            }
         });
@@ -334,17 +338,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         });
 
 
-
     }
-
-
 
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         int SpinnerID = parent.getId();
-        if(SpinnerID == R.id.age_Spinner){
-            switch (position){
+        if (SpinnerID == R.id.age_Spinner) {
+            switch (position) {
                 case 0:
                     age = "१८-२९";
                     break;
@@ -362,8 +363,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         }
 
-        if(SpinnerID == R.id.sex_Spinner){
-            switch (position){
+        if (SpinnerID == R.id.sex_Spinner) {
+            switch (position) {
                 case 0:
                     sex = " पुरुष";
                     break;
@@ -372,13 +373,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     break;
 
 
-
             }
         }
 
 
-        if(SpinnerID == R.id.religion_Spinner){
-            switch (position){
+        if (SpinnerID == R.id.religion_Spinner) {
+            switch (position) {
                 case 0:
                     religion = "हिन्दु";
                     break;
@@ -396,12 +396,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     break;
 
 
-
             }
         }
 
-        if(SpinnerID == R.id.cast_Spinner){
-            switch (position){
+        if (SpinnerID == R.id.cast_Spinner) {
+            switch (position) {
                 case 0:
                     cast = "बाहुन";
                     break;
@@ -424,8 +423,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
 
-        if(SpinnerID == R.id.vote_Spinner){
-            switch (position){
+        if (SpinnerID == R.id.vote_Spinner) {
+            switch (position) {
                 case 0:
                     vote = "नेपाली कांग्रेस";
                     break;
@@ -449,15 +448,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     break;
 
 
-
-
             }
         }
 
 
-
-        if(SpinnerID == R.id.vote_in_next_election_Spinner){
-            switch (position){
+        if (SpinnerID == R.id.vote_in_next_election_Spinner) {
+            switch (position) {
 
                 case 0:
                     coming_election = "अवस्य गर्छु";
@@ -483,10 +479,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
 
-
-
-        if(SpinnerID == R.id.country_Spinner){
-            switch (position){
+        if (SpinnerID == R.id.country_Spinner) {
+            switch (position) {
                 case 0:
                     country_movement = "सही";
                     break;
@@ -498,15 +492,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     break;
 
 
-
-
             }
         }
 
 
-
-        if(SpinnerID == R.id.political_party_Spinner){
-            switch (position){
+        if (SpinnerID == R.id.political_party_Spinner) {
+            switch (position) {
                 case 0:
                     political_party = "नेपाली कांग्रेस";
                     break;
@@ -534,8 +525,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
 
-        if(SpinnerID == R.id.imp_election_Spinner){
-            switch (position){
+        if (SpinnerID == R.id.imp_election_Spinner) {
+            switch (position) {
                 case 0:
                     imp_election = "पार्टी";
                     break;
@@ -548,8 +539,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
 
-        if(SpinnerID == R.id.nepal_problem_Spinner){
-            switch (position){
+        if (SpinnerID == R.id.nepal_problem_Spinner) {
+            switch (position) {
                 case 0:
                     nepal_problem = "स्वास्थ्य र कल्याण";
                     break;
@@ -586,8 +577,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
 
-        if(SpinnerID == R.id.talk_political_leader_Spinner){
-            switch (position){
+        if (SpinnerID == R.id.talk_political_leader_Spinner) {
+            switch (position) {
                 case 0:
                     talk_leader = "चाहन्छु";
                     break;
@@ -603,8 +594,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
 
-        if(SpinnerID == R.id.evaluation_pm_Spinner){
-            switch (position){
+        if (SpinnerID == R.id.evaluation_pm_Spinner) {
+            switch (position) {
                 case 0:
                     evaluation_pm = "धेरै सन्तुष्ट";
                     break;
@@ -625,30 +616,29 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
 
-        if(SpinnerID == R.id.resident_Spinner){
-            long spinnerPosition = 0 ;
+        if (SpinnerID == R.id.resident_Spinner) {
+            long spinnerPosition = 0;
             spinnerPosition = adpt_resident.getItemId(position);
             int spinner_item_selected_position = (int) (long) spinnerPosition;
 
-                    resident = Constants.DISTRICT[spinner_item_selected_position];
-                    Log.e("MainActivity", "onItemSelected: "+ resident );
+            resident = Constants.DISTRICT[spinner_item_selected_position];
+            Log.e("MainActivity", "onItemSelected: " + resident);
         }
 
 
-        if(SpinnerID == R.id.birth_Spinner){
-            long spinnerPosition = 0 ;
+        if (SpinnerID == R.id.birth_Spinner) {
+            long spinnerPosition = 0;
             spinnerPosition = adpt_birthplace.getItemId(position);
             int spinner_item_selected_position = (int) (long) spinnerPosition;
 
-                    birthplace = Constants.DISTRICT[spinner_item_selected_position];
-                    Log.e("MainActivity", "onItemSelected: "+ birthplace );
+            birthplace = Constants.DISTRICT[spinner_item_selected_position];
+            Log.e("MainActivity", "onItemSelected: " + birthplace);
 
         }
 
 
-
-        if(SpinnerID == R.id.monthly_salary_Spinner){
-            switch (position){
+        if (SpinnerID == R.id.monthly_salary_Spinner) {
+            switch (position) {
                 case 0:
                     monthly_salary = "२० हजार";
                     break;
@@ -667,9 +657,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
 
-
-        if(SpinnerID == R.id.origin_Spinner){
-            switch (position){
+        if (SpinnerID == R.id.origin_Spinner) {
+            switch (position) {
                 case 0:
                     originality = "हिमालि";
                     break;
@@ -683,8 +672,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             }
         }
-
-
 
 
     }
@@ -702,9 +689,30 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Bundle bundle = intent.getExtras();
             String jsonToParse = (String) bundle.get("JSON1");
             formid = (String) bundle.get("DBid");
+            sent_Status = (String) bundle.get("sent_Status");
 
             Log.e("NepalPooling", "i-" + jsonToParse.toString());
-            Log.e("NepalPooling", "FORMID" + formid);
+            Log.e("NepalPooling", "FORM_STATUS" + sent_Status);
+
+            if (sent_Status.equals("Sent")) {
+                cv_Send_Save.setVisibility(View.GONE);
+                spinner_age.setEnabled(false);
+                spinner_sex.setEnabled(false);
+                spinner_religion.setEnabled(false);
+                spinner_cast.setEnabled(false);
+                spinner_vote.setEnabled(false);
+                spinner_coming_election.setEnabled(false);
+                spinner_country_movement.setEnabled(false);
+                spinner_political_party.setEnabled(false);
+                spinner_imp_election.setEnabled(false);
+                spinner_nepal_problem.setEnabled(false);
+                spinner_talk_leader.setEnabled(false);
+                spinner_evaluation_pm.setEnabled(false);
+                spinner_resident.setEnabled(false);
+                spinner_birthplace.setEnabled(false);
+                spinner_monthly_salary.setEnabled(false);
+                spinner_originality.setEnabled(false);
+            }
 
 
             try {
@@ -749,7 +757,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
             jsonToSend = header.toString();
-            Log.e(TAG, "convertDataToJson: "+jsonToSend );
+            Log.e(TAG, "convertDataToJson: " + jsonToSend);
 
 
         } catch (JSONException e) {
@@ -757,10 +765,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
 
-
     }
-
-
 
 
     public void sendDatToserver() {
@@ -797,7 +802,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         birthplace = jsonObj.getString("q14");
         originality = jsonObj.getString("q15");
         monthly_salary = jsonObj.getString("q16");
-
 
 
         Log.e("Nepal Pool", "Parsed_data " + age + country_movement + monthly_salary);
@@ -855,8 +859,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-
-
     private class RestApii extends AsyncTask<String, Void, String> {
 
 
@@ -874,7 +876,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         protected void onPostExecute(String result) {
             // TODO Auto-generated method stub
 
-            if(mProgressDlg != null && mProgressDlg.isShowing()){
+            if (mProgressDlg != null && mProgressDlg.isShowing()) {
                 mProgressDlg.dismiss();
             }
 
@@ -883,7 +885,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             try {
                 jsonObject = new JSONObject(result);
                 dataSentStatus = jsonObject.getString("status");
-                Log.e(TAG, "SAMIR "+ dataSentStatus );
+                Log.e(TAG, "SAMIR " + dataSentStatus);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -910,16 +912,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 Log.e("dbID", "" + id);
                 dataBaseNepalPooling.close();
 
-                if(CheckValues.isFromSavedFrom){
-                    Log.e(TAG, "onPostExecute: FormID : "+ formid );
+                if (CheckValues.isFromSavedFrom) {
+                    Log.e(TAG, "onPostExecute: FormID : " + formid);
                     DatabaseNepalPoolingAppNotSent dataBaseNepalPoolingNotSent = new DatabaseNepalPoolingAppNotSent(context);
                     dataBaseNepalPoolingNotSent.open();
                     dataBaseNepalPoolingNotSent.dropRowNotSentForms(formid);
 //                    Log.e("dbID", "" + id);
                     dataBaseNepalPoolingNotSent.close();
                 }
-
-
 
 
             }
@@ -997,6 +997,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (id == R.id.menu_item_dynamic_form) {
 
             Intent intent = new Intent(MainActivity.this, DynamicFormActivity.class);
+            this.startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.menu_item_privacy_policy) {
+
+            Intent intent = new Intent(MainActivity.this, PrivacyPolicyActivity.class);
+            this.startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.menu_item_about_us) {
+
+            Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
             this.startActivity(intent);
             return true;
         }

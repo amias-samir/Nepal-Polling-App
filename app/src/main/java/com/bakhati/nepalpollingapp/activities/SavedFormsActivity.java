@@ -119,6 +119,20 @@ public class SavedFormsActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.menu_item_privacy_policy) {
+
+            Intent intent = new Intent(SavedFormsActivity.this, PrivacyPolicyActivity.class);
+            this.startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.menu_item_about_us) {
+
+            Intent intent = new Intent(SavedFormsActivity.this, AboutUsActivity.class);
+            this.startActivity(intent);
+            return true;
+        }
+
 
         return super.onOptionsItemSelected(item);
     }
