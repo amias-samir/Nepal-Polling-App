@@ -462,6 +462,22 @@ public class DynamicFormActivity extends AppCompatActivity implements onAnswerSe
             }
         });    }
 
+    @Override
+    public void lastFragment() {
+        ButtonNext.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void firstFragment() {
+        ButtonPrev.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void formFragment() {
+        ButtonNext.setVisibility(View.VISIBLE);
+        ButtonPrev.setVisibility(View.VISIBLE);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

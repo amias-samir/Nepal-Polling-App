@@ -28,6 +28,7 @@ public class SpinnerFragment extends Fragment implements DynamicFormActivity.onF
     private String[] answers;
     private String userSelectedAnswer;
     private onAnswerSelectedListener listener;
+    private onFormFinishedListener form_listner;
 
 
 
@@ -62,6 +63,7 @@ public class SpinnerFragment extends Fragment implements DynamicFormActivity.onF
     @Override
     public void fragmentBecameVisible(int fragmentPostionInViewPager) {
         getUserAnswer(fragmentPostionInViewPager);
+        notifyFormFragment();
 
     }
 
@@ -185,6 +187,14 @@ public class SpinnerFragment extends Fragment implements DynamicFormActivity.onF
         }
 
 
+    }
+
+    private void notifyFormFragment(){
+        try {
+            listener.formFragment();
+        } catch (ClassCastException cce){
+
+        }
     }
 
 }

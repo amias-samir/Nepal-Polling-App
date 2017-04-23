@@ -20,8 +20,9 @@ import com.bakhati.nepalpollingapp.activities.DynamicFormActivity;
 public class FormEndFragment extends Fragment implements DynamicFormActivity.onFragmentVisibleListener {
 
     onFormFinishedListener listener;
-    Button save, send ;
+    Button save, send;
     public static final String TAG = "FormEndFragment";
+
     public FormEndFragment() {
     }
 
@@ -30,23 +31,20 @@ public class FormEndFragment extends Fragment implements DynamicFormActivity.onF
                              Bundle savedInstanceState) {
         View rootview = inflater.inflate(R.layout.fragment_form_end, container, false);
 
-        send = (Button)rootview.findViewById(R.id.send);
-        save = (Button)rootview.findViewById(R.id.save);
+        send = (Button) rootview.findViewById(R.id.send);
+        save = (Button) rootview.findViewById(R.id.save);
 
-        send.setOnClickListener(new View.OnClickListener()
-        {
+
+        send.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 notifySendForm();
 
             }
         });
-        save.setOnClickListener(new View.OnClickListener()
-        {
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 notifySaveForm();
 
             }
@@ -90,13 +88,21 @@ public class FormEndFragment extends Fragment implements DynamicFormActivity.onF
 
     @Override
     public void fragmentBecameVisible(int position) {
-
+        notifyLastFragment();
     }
 
     private void notifySendForm() {
 
         try {
             listener.uploadForm();
+        } catch (ClassCastException cce) {
+
+        }
+    }
+
+    private void notifyLastFragment() {
+        try {
+            listener.lastFragment();
         } catch (ClassCastException cce) {
 
         }

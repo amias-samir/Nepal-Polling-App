@@ -30,7 +30,15 @@ public class FormStartFragment  extends Fragment implements   DynamicFormActivit
 
     @Override
     public void fragmentBecameVisible(int position) {
-
+    notifyFirstFragment();
     }
 
+    private void notifyFirstFragment(){
+        listener = (onFormFinishedListener) getActivity();
+        try {
+            listener.firstFragment();
+        } catch (ClassCastException cce){
+
+        }
+    }
 }

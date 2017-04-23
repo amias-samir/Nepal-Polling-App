@@ -8,4 +8,10 @@ public interface onFormFinishedListener {
     void uploadForm();
 
     void saveForm();
+
+    void lastFragment();
+
+    void firstFragment();
+
+
 }
