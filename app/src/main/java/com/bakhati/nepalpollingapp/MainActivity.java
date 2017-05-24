@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -16,6 +17,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +27,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bakhati.nepalpollingapp.activities.AboutUsActivity;
@@ -893,7 +896,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
             if (dataSentStatus.equals("200")) {
-                Toast.makeText(context, "Data sent successfully", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Data sent successfully", Toast.LENGTH_SHORT).show();
 
 
                 long date = System.currentTimeMillis();
@@ -919,6 +922,45 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     dataBaseNepalPoolingNotSent.dropRowNotSentForms(formid);
 //                    Log.e("dbID", "" + id);
                     dataBaseNepalPoolingNotSent.close();
+
+                    dataBaseNepalPoolingNotSent.close();
+                    DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+                    int width = metrics.widthPixels;
+                    int height = metrics.heightPixels;
+
+                    final Dialog showDialog = new Dialog(context);
+                    showDialog.setContentView(R.layout.savedform_sent_popup);
+                    final Button yes = (Button) showDialog.findViewById(R.id.buttonYes);
+                    final Button no = (Button) showDialog.findViewById(R.id.buttonNo);
+
+                    showDialog.setTitle("Successfully sent");
+//                    TextView title =  new TextView(context);
+//                    title.setText("Due Alert");
+//                    title.setGravity(Gravity.CENTER);
+//                    title.setTextSize(30);
+//                    title.setBackgroundColor(Color.GRAY);
+//                    title.setTextColor(Color.WHITE);
+//                    showDialog.setTitle(title);
+                    showDialog.setCancelable(false);
+                    showDialog.show();
+                    showDialog.getWindow().setLayout((6 * width) / 7, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showDialog.dismiss();
+                            Intent intent = new Intent(MainActivity.this, SavedFormsActivity.class);
+                            startActivity(intent);
+//                                finish();
+                        }
+                    });
+
+                    no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showDialog.dismiss();
+                        }
+                    });
                 }
 
 

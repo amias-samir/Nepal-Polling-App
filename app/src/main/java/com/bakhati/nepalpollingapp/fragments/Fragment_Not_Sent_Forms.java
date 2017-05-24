@@ -237,7 +237,7 @@ public class Fragment_Not_Sent_Forms extends Fragment {
         if(isTableEmpty){
             Default_DIalog.showDefaultDialog(getActivity() , R.string.app_name , "No data Saved ");
         }else{
-            int count = databaseNepalPoolingAppNotSent.getNotSentFormsRowCount();
+            int count = databaseNepalPoolingAppNotSent.getNotSentFormsRowCount() +1;
             Log.e("FragmentNotSent", "createList: Total Row Count " + count );
             for(int i=count ; i>=1 ; i--) {
 //                String[] data = dataBaseNepalPublicHealthNotSent.return_Data_TABLE_MAIN(i);
@@ -253,7 +253,7 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                 savedData.deletedStatus = data[5];
                 savedData.dbId = data[6];
 
-                if(savedData.formId!= null) {
+                if(savedData.dbId!= null) {
 
                     resultCur.add(savedData);
                 }

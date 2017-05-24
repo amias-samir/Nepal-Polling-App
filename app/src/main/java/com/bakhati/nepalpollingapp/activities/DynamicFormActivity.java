@@ -82,7 +82,7 @@ public class DynamicFormActivity extends AppCompatActivity implements onAnswerSe
         startFormFilling();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Nepal Polling App");
+        toolbar.setTitle("Nepal Polling");
         setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ButtonPrev = (Button) findViewById(R.id.prevBtn);
@@ -327,7 +327,7 @@ public class DynamicFormActivity extends AppCompatActivity implements onAnswerSe
 
 
             if (dataSentStatus.equals("200")) {
-                Toast.makeText(context, "Data sent successfully", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Data sent successfully", Toast.LENGTH_SHORT).show();
 
 
                 long date = System.currentTimeMillis();
@@ -353,6 +353,69 @@ public class DynamicFormActivity extends AppCompatActivity implements onAnswerSe
                     dataBaseNepalPoolingNotSent.dropRowNotSentForms(formid);
 //                    Log.e("dbID", "" + id);
                     dataBaseNepalPoolingNotSent.close();
+                    DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+                    int width = metrics.widthPixels;
+                    int height = metrics.heightPixels;
+
+                    final Dialog showDialog = new Dialog(context);
+                    showDialog.setContentView(R.layout.savedform_sent_popup);
+                    final Button yes = (Button) showDialog.findViewById(R.id.buttonYes);
+                    final Button no = (Button) showDialog.findViewById(R.id.buttonNo);
+
+                    showDialog.setTitle("Data Sent Successfully");
+                    showDialog.setCancelable(false);
+                    showDialog.show();
+                    showDialog.getWindow().setLayout((6 * width) / 7, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showDialog.dismiss();
+                            Intent intent = new Intent(DynamicFormActivity.this, SavedFormsActivity.class);
+                            startActivity(intent);
+//                                finish();
+                        }
+                    });
+
+                    no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showDialog.dismiss();
+                        }
+                    });
+
+                }
+                if(!CheckValues.isFromSavedFrom){
+                    DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+                    int width = metrics.widthPixels;
+                    int height = metrics.heightPixels;
+
+                    final Dialog showDialog = new Dialog(context);
+                    showDialog.setContentView(R.layout.thank_you_popup);
+                    final Button yes = (Button) showDialog.findViewById(R.id.buttonYes);
+                    final Button no = (Button) showDialog.findViewById(R.id.buttonNo);
+
+                    showDialog.setTitle("Successfully Sent");
+                    showDialog.setCancelable(false);
+                    showDialog.show();
+                    showDialog.getWindow().setLayout((6 * width) / 7, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showDialog.dismiss();
+                           Intent intent = new Intent(DynamicFormActivity.this, DynamicFormActivity.class);
+                            startActivity(intent);
+//                                finish();
+                        }
+                    });
+
+                    no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showDialog.dismiss();
+                        }
+                    });
                 }
 
 

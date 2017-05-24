@@ -103,6 +103,7 @@ public class DataBaseNepalPoolingAppSent extends SQLiteOpenHelper {
             }
             return name;
         }
+
         public int returnTotalNoOf_TABLE_MAIN_NUM() {
             Cursor cursor = db.query( TABLE_MAIN , COLS_TABLE_MAIN , null, null, null,
                     null, null);
